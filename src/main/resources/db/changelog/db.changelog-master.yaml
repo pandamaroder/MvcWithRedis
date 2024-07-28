@@ -1,0 +1,6 @@
+databaseChangeLog:
+  - include:
+      file: /db/changelog/sql/schema.sql
+  - include:
+      file: /db/changelog/sql/base.sql
+

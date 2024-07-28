@@ -1,0 +1,35 @@
+server:
+  port: 8086
+  servlet:
+      context-path: /
+      forward-headers-strategy: framework
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/habrdb
+    driverClassName: org.postgresql.Driver
+    username: "habrpguser"
+    password: "pgpwd4habr"
+  liquibase:
+    parameters:
+      clearCheckSums: true
+  jpa:
+    show-sql: true #!!!
+    open-in-view: false
+    hibernate:
+      ddl-auto: none #never ever use in production
+    properties:
+      hibernate:
+        format_sql: true
+        default_schema: demo
+
+
+springdoc:
+    swagger-ui:
+        tagsSorter: alpha
+        operations-sorter: method
+
+swagger:
+    info:
+        title: "API News Service"
+        description: "Backend сервис для приложения «Новостной сервис»"
