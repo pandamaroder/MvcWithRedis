@@ -41,28 +41,7 @@ public class DataHelper {
             (int) Math.pow(10, targetStringLength) - 1);
     }
 
-    public static News.NewsBuilder<?, ?> prepareNews() {
-        return News.builder().title("testNews").content("test");
-    }
 
-    public static Category.CategoryBuilder<?, ?> prepareCategory() {
-        return Category.builder().name("test1");
-    }
 
-    public static Category.CategoryBuilder<?, ?> preparePlainCategory() {
-        return Category.builder();
-    }
-
-    public static User.UserBuilder<?, ?> prepareUser() {
-        return User.builder().username("Test");
-    }
-
-    //TODO добавить лист с комментариями
-    public static User preparePetrPetrov() {
-        return User.builder()
-            .id(Long.valueOf(getNumeric(3)))
-            .username("PetrPetrov")
-            .build();
-    }
 
 }
