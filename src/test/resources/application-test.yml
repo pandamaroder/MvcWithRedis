@@ -1,0 +1,51 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+
+management:
+    server:
+        port: 8081
+        servlet:
+            context-path: /manage
+    endpoints:
+        enabled-by-default: false
+        web:
+            exposure:
+                include: health, prometheus, info, threaddump, heapdump, openapi, swaggerui
+            cors:
+                allowed-methods: '*'
+                allowed-origins: '*'
+                allowed-headers: '*'
+    endpoint:
+        health:
+            enabled: true
+            probes:
+                enabled: true
+            group:
+                readiness:
+                    include: readinessState, db
+                    additional-path: server:/readyz
+        prometheus:
+            enabled: true
+        info:
+            enabled: true
+        threaddump:
+            enabled: true
+        heapdump:
+            enabled: true
+    metrics:
+        distribution:
+            percentiles-histogram:
+                "[http.server.requests]": true
+    info:
+        env:
+            enabled: true
+    health:
+        livenessstate:
+            enabled: true
+        readinessstate:
+            enabled: true
+
+
