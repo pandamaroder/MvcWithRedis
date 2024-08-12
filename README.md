@@ -9,7 +9,7 @@
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=pandamaroder_ContactRegistry&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=pandamaroder_ContactRegistry)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=pandamaroder_ContactRegistry&metric=coverage)](https://sonarcloud.io/summary/new_code?id=pandamaroder_ContactRegistry)
 
-MVC сервис для приложения «Новостной сервис»
+MVC сервис для приложения «Новостной сервис» c кешированием
 
 **Технологии:** Java, Spring Boot, Postgress, Spring Data, Redis
 
@@ -21,21 +21,24 @@ MVC сервис для приложения «Новостной сервис»
 4. Установить докер(десктоп версию под Win or Mac)
 5. запустить локальный файл компоуз для поднятия бд либо через idea либо в терминале `docker-compose -f docker-compose-env-only.yml up`
 6. запустить Application
+7. проверить корректность примененных миграций: DDL + Data 
+8. проверить состояние контейнеров : логи 
 
 
 
 #Тестирование эндпоинтов:
-
+Для проверки основного контроллера сервиса - необходимо выполнить запрос : http://localhost:8086/books/lastUpdates?now=2024-08-11
 
 
 # Локальный запуск:
-
-##  окружение в докере
 
 1. Выполнить в корне 
 ```shell
 docker-compose -f docker-compose-env-only.yml up
 ```
 
-2. Установить переменные окружения (env vars): `DB_PORT=5400;DB_HOST=localhost;DB_USER=postgres;DB_PASS=123;DB_NAME=FMH_DB;SWAGGER_HOST=localhost:8080;DOCUMENTS_STATIC_PATH=/var;STATIC_HOST=test.vhospice.org;APP_MAIL_USERNAME=test@vhospice.org;APP_MAIL_PASSWORD=G3ttdHGrgjqtfjkjpHeF`
-3. Запустить backend сервис
+
+#Тестирование редиса:
+1. запустить утилиту redis-cli
+2. выполнить запрос : http://localhost:8086/books/lastUpdates?now=2024-08-11
+3. проверить состояние кеша keys '*'

@@ -11,11 +11,16 @@
         <exclude name="GuardLogStatement"/>
     </rule>-->
 
+    <rule ref="category/java/errorprone.xml/AvoidDuplicateLiterals">
+        <properties>
+            <property name="exceptionList" value="books" />
+        </properties>
+    </rule>
 
     <rule ref="category/java/codestyle.xml">
         <exclude name="AtLeastOneConstructor"/>
         <exclude name="OnlyOneReturn"/>
-        <exclude name="AtLeastOneConstructor"/>
+        <exclude name="CallSuperInConstructor"/>
         <exclude name="CommentDefaultAccessModifier"/>
         <exclude name="LongVariable"/>
         <exclude name="ShortVariable"/>

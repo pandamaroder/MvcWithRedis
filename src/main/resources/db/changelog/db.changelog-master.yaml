@@ -3,4 +3,6 @@ databaseChangeLog:
       file: /db/changelog/sql/schema.sql
   - include:
       file: /db/changelog/sql/base.sql
+  - include:
+      file: /db/changelog/sql/data.sql
 

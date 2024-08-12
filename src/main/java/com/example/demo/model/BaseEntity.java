@@ -22,6 +22,7 @@ import java.time.LocalDateTime;
 @SuperBuilder
 @EntityListeners(ClockAwareEntityListener.class)
 public abstract class BaseEntity implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @Column(name = "id", nullable = false)

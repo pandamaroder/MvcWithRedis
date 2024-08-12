@@ -14,6 +14,7 @@ import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 import lombok.experimental.SuperBuilder;
 
+import java.io.Serializable;
 import java.util.List;
 
 @ToString
@@ -25,7 +26,9 @@ import java.util.List;
 @Setter
 @SuperBuilder
 @Table(name = "categories", schema = "demo")
-public class Category extends BaseEntity {
+public class Category extends BaseEntity implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Column(name = "name", nullable = false, unique = true)
     private String name;
