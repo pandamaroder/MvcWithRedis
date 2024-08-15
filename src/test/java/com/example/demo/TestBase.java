@@ -6,7 +6,6 @@ import com.example.demo.model.BaseEntity;
 import com.example.demo.services.BooksService;
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.Column;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -73,14 +72,10 @@ public abstract class TestBase {
     }
 
     @BeforeEach
-    void clearDataBase() {
+    void clearDbAndCachesAndSetTime() {
         jdbcTemplate.update("truncate table demo.categories, demo.books");
         Optional.ofNullable(cacheManager.getCache("books")).ifPresent(Cache::clear);
         Optional.ofNullable(cacheManager.getCache("booksByCategory")).ifPresent(Cache::clear);
-    }
-
-    @AfterEach
-    void resetClock() {
         mutableClock.setInstant(getTestInstant());
     }
 
@@ -92,12 +87,12 @@ public abstract class TestBase {
 
     protected <T> void assertThatNullableFieldsAreNotPrimitive(final Class<T> entityClass) {
         Arrays.stream(entityClass
-            .getDeclaredFields())
-            .filter(field -> field.isAnnotationPresent(Column.class) && field.getAnnotation(Column.class)
-                .nullable()).forEach(field -> assertThat(field.getType()
-                .isPrimitive())
-                .withFailMessage(String.format("In %s field %s is primitive", entityClass.getName(), field.getName()))
-                .isFalse());
+                        .getDeclaredFields())
+                .filter(field -> field.isAnnotationPresent(Column.class) && field.getAnnotation(Column.class)
+                        .nullable()).forEach(field -> assertThat(field.getType()
+                        .isPrimitive())
+                        .withFailMessage(String.format("In %s field %s is primitive", entityClass.getName(), field.getName()))
+                        .isFalse());
     }
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
@@ -125,6 +120,11 @@ public abstract class TestBase {
         @Bean
         public MutableClock mutableClock() {
             return MutableClock.of(getTestInstant(), ZoneOffset.UTC);
+        }
+
+        @Bean
+        public LocalDateTime fixedDateTime() {
+            return LocalDateTime.ofInstant(getTestInstant(), ZoneOffset.UTC);
         }
 
         @Bean

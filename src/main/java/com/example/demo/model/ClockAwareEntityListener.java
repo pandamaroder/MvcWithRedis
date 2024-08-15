@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 import java.io.Serializable;
 import java.time.Clock;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 
 @Component
 @NoArgsConstructor
@@ -25,15 +24,14 @@ public class ClockAwareEntityListener implements Serializable {
     @PrePersist
     public void initCreatedAt(@Nonnull final BaseEntity entity) {
         if (entity.getCreatedAt() == null) {
-            entity.setCreatedAt(LocalDateTime.now(ZoneId.systemDefault()));
+            entity.setCreatedAt(LocalDateTime.now(clock));
         }
     }
 
     @PreUpdate
     public void initUpdatedAt(@Nonnull final BaseEntity entity) {
         if (entity.getId() != null && entity.getCreatedAt() != null) {
-            entity.setUpdatedAt(LocalDateTime.now(ZoneId.systemDefault()));
+            entity.setUpdatedAt(LocalDateTime.now(clock));
         }
     }
-
 }

@@ -42,3 +42,6 @@ docker-compose -f docker-compose-env-only.yml up
 1. запустить утилиту redis-cli
 2. выполнить запрос : http://localhost:8086/books/lastUpdates?now=2024-08-11
 3. проверить состояние кеша keys '*'
+
+#Дополнительные материалы 
+https://habr.com/ru/companies/spring_aio/articles/829054/

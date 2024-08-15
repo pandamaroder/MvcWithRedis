@@ -8,8 +8,6 @@ import lombok.experimental.SuperBuilder;
 import org.springframework.validation.annotation.Validated;
 
 import java.io.Serializable;
-import java.util.Locale;
-import java.util.Objects;
 
 @Data
 @Validated
@@ -32,7 +30,7 @@ public class BookDto implements Serializable {
     @EqualsAndHashCode.Include
     private String categoryName;
 
-    @Override
+   /* @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -48,5 +46,5 @@ public class BookDto implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(title, categoryName, title);
-    }
+    }*/
 }
