@@ -45,3 +45,5 @@ docker-compose -f docker-compose-env-only.yml up
 
 #Дополнительные материалы 
 https://habr.com/ru/companies/spring_aio/articles/829054/
+https://java.testcontainers.org/features/networking/#exposing-container-ports-to-the-host
+https://github.com/spring-projects/spring-boot/issues/34657 - feature to arrive
