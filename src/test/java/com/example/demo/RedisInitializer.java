@@ -8,16 +8,17 @@ import org.testcontainers.utility.DockerImageName;
 
 public class RedisInitializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
 
-    private static final RedisContainer CONTAINER = new RedisContainer(DockerImageName.parse("redis").withTag("6.2.6"))
-            .withExposedPorts(6379);
+    private static final RedisContainer REDIS_CONTAINER = new RedisContainer(DockerImageName.parse("redis:6.2.6")).withExposedPorts(6379);
 
     @Override
     public void initialize(ConfigurableApplicationContext context) {
-        CONTAINER.start();
+
+        REDIS_CONTAINER.start();
 
         TestPropertyValues.of(
-                "spring.data.redis.host=" + CONTAINER.getRedisHost(),
-                "spring.data.redis.port=" + CONTAINER.getRedisPort()
+                "spring.redis.host=" + REDIS_CONTAINER.getRedisHost(),
+                "spring.redis.port=" + REDIS_CONTAINER.getRedisPort()
         ).applyTo(context.getEnvironment());
+
     }
 }
