@@ -31,10 +31,10 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.liquibase:liquibase-core")
 	implementation("org.postgresql:postgresql")
-
+	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.testcontainers:junit-jupiter")
 	testImplementation("org.testcontainers:postgresql")
-
+    testImplementation("com.redis:testcontainers-redis:2.2.2")
     testImplementation ("org.springframework.boot:spring-boot-starter-webflux")
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
@@ -45,15 +45,7 @@ dependencies {
     implementation ("org.threeten:threeten-extra:1.6.0")
     implementation("javax.servlet:javax.servlet-api:4.0.1")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2")
-
-	testImplementation("com.redis:testcontainers-redis:2.2.2")
     implementation("org.springframework.boot:spring-boot-starter-data-redis")
-
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
-
-	testImplementation("org.springframework.boot:spring-boot-testcontainers:2.6.0")
-	testImplementation("org.springframework.boot:spring-boot-test-autoconfigure:2.6.0")
-
     implementation("org.springframework.boot:spring-boot-starter-cache")
     errorprone("com.google.errorprone:error_prone_core:2.27.1")
     compileOnly("javax.servlet:javax.servlet-api:4.0.1")
