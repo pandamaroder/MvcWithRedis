@@ -8,8 +8,7 @@ import org.testcontainers.utility.DockerImageName;
 
 public class RedisInitializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
 
-    private static final RedisContainer REDIS_CONTAINER = new RedisContainer(DockerImageName
-            .parse("redis:6.2.6")).withExposedPorts(6379);
+    private static final RedisContainer REDIS_CONTAINER = new RedisContainer(DockerImageName.parse("redis:7.4.0"));
 
     @Override
     public void initialize(ConfigurableApplicationContext context) {
