@@ -1,24 +1,23 @@
 package com.example.demo;
 
-import com.redis.testcontainers.RedisContainer;
 import org.springframework.boot.test.util.TestPropertyValues;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.utility.DockerImageName;
 
 public class RedisInitializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
 
-    private static final RedisContainer REDIS_CONTAINER = new RedisContainer(DockerImageName.parse("redis:7.4.0"));
+    private static final GenericContainer<?> CONTAINER = new GenericContainer<>(DockerImageName.parse("redis").withTag("4.0.14"))
+            .withExposedPorts(6379);
 
     @Override
     public void initialize(ConfigurableApplicationContext context) {
-
-        REDIS_CONTAINER.start();
+        CONTAINER.start();
 
         TestPropertyValues.of(
-                "spring.redis.host=" + REDIS_CONTAINER.getRedisHost(),
-                "spring.redis.port=" + REDIS_CONTAINER.getRedisPort()
+                "spring.data.redis.host=" + CONTAINER.getHost(),
+                "spring.data.redis.port=" + CONTAINER.getMappedPort(6379)
         ).applyTo(context.getEnvironment());
-
     }
 }
