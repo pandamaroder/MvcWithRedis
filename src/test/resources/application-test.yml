@@ -49,3 +49,6 @@ management:
             enabled: true
 
 
+logging:
+  level:
+    org.testcontainers: DEBUG

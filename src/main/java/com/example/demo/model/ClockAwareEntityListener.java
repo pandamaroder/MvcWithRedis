@@ -7,13 +7,15 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
 import java.time.Clock;
 import java.time.LocalDateTime;
 
 @Component
 @NoArgsConstructor
-public class ClockAwareEntityListener {
+public class ClockAwareEntityListener implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     // Couldn't use constructor injection here
     @SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
     @Autowired
@@ -32,5 +34,4 @@ public class ClockAwareEntityListener {
             entity.setUpdatedAt(LocalDateTime.now(clock));
         }
     }
-
 }

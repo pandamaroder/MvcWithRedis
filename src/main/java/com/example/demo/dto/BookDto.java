@@ -1,29 +1,36 @@
 package com.example.demo.dto;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.springframework.validation.annotation.Validated;
 
-import java.util.Locale;
-import java.util.Objects;
+import java.io.Serializable;
 
 @Data
 @Validated
 @SuperBuilder
 @RequiredArgsConstructor
-public class BookDto {
-
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+public class BookDto implements Serializable {
+    private static final long serialVersionUID = 1L;
     private Long id;
 
+    @NonNull
+    @EqualsAndHashCode.Include
     private String title;
 
+    @NonNull
+    @EqualsAndHashCode.Include
     private String content;
 
-
+    @NonNull
+    @EqualsAndHashCode.Include
     private String categoryName;
 
-    @Override
+   /* @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -39,5 +46,5 @@ public class BookDto {
     @Override
     public int hashCode() {
         return Objects.hash(title, categoryName, title);
-    }
+    }*/
 }

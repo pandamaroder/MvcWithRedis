@@ -34,6 +34,7 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.testcontainers:junit-jupiter")
 	testImplementation("org.testcontainers:postgresql")
+    testImplementation("com.redis:testcontainers-redis:2.2.2")
     testImplementation ("org.springframework.boot:spring-boot-starter-webflux")
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
@@ -44,8 +45,8 @@ dependencies {
     implementation ("org.threeten:threeten-extra:1.6.0")
     implementation("javax.servlet:javax.servlet-api:4.0.1")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2")
-    implementation("org.springframework.boot:spring-boot-starter-data-redis:3.1.5")
-    implementation("org.springframework.boot:spring-boot-starter-cache:3.1.5")
+    implementation("org.springframework.boot:spring-boot-starter-data-redis")
+    implementation("org.springframework.boot:spring-boot-starter-cache")
     errorprone("com.google.errorprone:error_prone_core:2.27.1")
     compileOnly("javax.servlet:javax.servlet-api:4.0.1")
 }

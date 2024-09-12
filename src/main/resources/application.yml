@@ -4,6 +4,9 @@ server:
       context-path: /
       forward-headers-strategy: framework
 
+books:
+    periodForNewBooks: 14
+
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/habrdb
@@ -22,7 +25,12 @@ spring:
       hibernate:
         format_sql: true
         default_schema: demo
-
+  data:
+      redis:
+          client-name: my-redis-client
+          client-type: lettuce
+          host: localhost
+          port: 6379
 
 springdoc:
     swagger-ui:
